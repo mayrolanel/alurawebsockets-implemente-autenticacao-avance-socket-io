@@ -1,4 +1,4 @@
-import { adicionarDocumento, encontrarDocumento, obterDocumentos } from "../db/documentosDb";
+import { adicionarDocumento, encontrarDocumento, obterDocumentos } from "../db/documentosDb.js";
 
 function registrarEventoInicio(socket, io) {
     socket.on("obter_documentos", async (devolverDocumentos) => {
