@@ -1,5 +1,11 @@
 import { emitirAdicionarDocumento } from "./socket-front-index.js";
+import { obterCookie, removerCookie } from "./utils/cookies.js";
 
+const tokenJwt = obterCookie("tokenJwt");
+
+console.log('token cookie: ', tokenJwt)
+
+const botaoLogout = document.getElementById("botao-logout")
 const listaDocumentos = document.getElementById("lista-documentos");
 const form = document.getElementById("form-adiciona-documento");
 const inputDocumento = document.getElementById("input-documento");
@@ -9,6 +15,12 @@ form.addEventListener("submit", (evento) => {
   emitirAdicionarDocumento(inputDocumento.value);
   inputDocumento.value = "";
 });
+
+botaoLogout.addEventListener("click", () => {
+  removerCookie("tokenJwt");
+  alert('Usuário deslogado com sucesso!');
+  window.location.href = "/login/index.html";
+})
 
 function inserirLinkDocumento(nomeDocumento) {
   listaDocumentos.innerHTML += `
